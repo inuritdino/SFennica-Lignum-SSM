@@ -14,4 +14,4 @@ OPTIM-TOOL-MATLAB: optimization routine code including the distance functions
 Requirements:
 
 1. Matlab, The MathWorks. The paper simluations were run in Matlab ver. R2014b.
-2. LPFG, simulator for plant growth modeling. The simulator is available as a part of L-studio (Windows) or VLab (Unix/Mac) simulations environments. Both can be downloaded at <http://algorithmicbotany.org/virtual_laboratory/> along with documentation and detailed installation guides.
+2. LPFG, simulator for plant growth modeling. The simulator is available as a part of L-studio (Windows) or VLab (Unix/Mac) simulation environments. Both can be downloaded at <http://algorithmicbotany.org/virtual_laboratory/> along with the documentation and detailed installation guides.
