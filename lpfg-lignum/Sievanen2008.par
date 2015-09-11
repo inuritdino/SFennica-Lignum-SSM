@@ -1,0 +1,199 @@
+// LIGNUM parameters from Sievanen et al. 2008
+// Sievanen data are partially implemented. The linear interpolation of
+// LR and changes dependent on age of KSI are not implemented. Additionally,
+// PIPECOEFF is set to 0.77 for all branches of any order
+// (see Sievanen et al. 2008 for details on how it was actually implemented)
+#ifndef RNDSEED//random number generator seed. 0 stand for automatic
+#define RNDSEED 1
+#endif
+#ifndef VERB//verbose level
+#define VERB 1
+#endif
+#ifndef YEARS//number of years
+#define YEARS 10
+#endif
+#ifndef AF//Foliage production coeff
+#define AF 0.66
+#endif
+#ifndef AR//Root increment coeff
+#define AR 0.5
+#endif
+#ifndef SR//Root senescence
+#define SR 0.33
+#endif
+#ifndef SS//Sapwood senescence
+#define SS 0.04
+#endif
+#ifndef MF//Respiration for foliage
+#define MF 0.24
+#endif
+#ifndef MS// -//- for sapwood
+#define MS 0.024
+#endif
+#ifndef MR// -//- for roots
+#define MR 0.24
+#endif
+#ifndef KSI//initial amount of heartwood
+#define KSI 0.6
+#endif
+#ifndef RHO//wood density
+#define RHO 200.0
+#endif
+#ifndef NEEDLELEN//needle length
+#define NEEDLELEN 0.03
+#endif
+#ifndef NEEDLEANG//needle inclination angle
+#define NEEDLEANG (M_PI/4)
+#endif
+#ifndef NUMNEEDLECIRC//number of needles in the circumference
+#define NUMNEEDLECIRC 5
+#endif
+#ifndef NUMNEEDLELONG//number of needles along cyl
+#define NUMNEEDLELONG 10
+#endif
+#ifndef NEEDLEDENMIN//distance between needles, density
+#define NEEDLEDENMIN 0.02
+#endif
+#ifndef NEEDLEDENMAX//distance between needles, density
+#define NEEDLEDENMAX 0.05
+#endif
+#ifndef NEEDLEDIAM//diameter of a needle
+#define NEEDLEDIAM 0.002
+#endif
+#ifndef RF//foliage radius
+#define RF (NEEDLELEN*cos(M_PI/2 - NEEDLEANG))
+#endif
+#ifndef BRAANG//branching angle
+#define BRAANG 45
+#endif
+#ifndef ANGINCR//bra angle increment when bending
+#define ANGINCR 10.0
+#endif
+#ifndef MAXANG//max angle for bending
+#define MAXANG 95.0
+#endif
+#ifndef INITROTANG//initial rotation angle (144 in Perttunen 1998)
+#define INITROTANG 144.0
+#endif
+#ifndef FLA//"a" constant for the fL function for relative length calculation
+#define FLA 0.2
+#endif
+#ifndef FLBUDS//threshold FL value for L-buds to produce(see num_L_buds())
+#define FLBUDS 0.6
+#endif
+#ifndef Q//apical dominance parameter
+#define Q 0.1
+#endif
+#ifndef MINLEN//min length allowed for a cyl
+#define MINLEN 0.02
+#endif
+#ifndef PR//photosynthetic efficiency
+#define PR 0.0006
+#endif
+#ifndef LR//radius/length ratio
+#define LR 0.01
+#endif
+#ifndef LRMIN// min LR for Sievanen conditions
+#define LRMIN 0.008
+#endif //linear interpolation between LRMIN and LRMAX for Sievanen 2008 conditions
+#ifndef LRMAX// max LR for Sievanen conditions
+#define LRMAX 0.012
+#endif
+#ifndef INITLEN//length of the first cyl
+#define INITLEN 0.5
+#endif
+#ifndef FOLTHR//no foliage threshold
+#define FOLTHR 1e-08
+#endif
+#ifndef SHEDYEAR//least age of segments in a branch to be shed
+#define SHEDYEAR 0
+#endif
+#ifndef SHEDDIST//the type of dist for shedding: 0-no,1-uniform,2-poisson.
+#define SHEDDIST 0
+#endif
+#ifndef SHEDMU//the mean of Poisson distribution for shedding
+#define SHEDMU 2.0
+#endif
+#ifndef BRCRITLR//Branch len to base radius critical ratio
+#define BRCRITLR 50000
+#endif
+#ifndef CRITRUPT//Critical value of rupture modulus
+#define CRITRUPT 83300// [N/m^2] OR crit MOR=(12080*698),[kg/m^2]
+#endif
+#ifndef PIPECOEFF//coefficient for the pipe model how much of SA equal
+#define PIPECOEFF 0.77
+#endif
+#ifndef SSSTART// year after which sapwood senescence starts
+#define SSSTART 15
+#endif
+#ifndef GAMMASD//horizontal curvature, XY-plane angle std (in deg)
+#define GAMMASD 5.0
+#endif
+#ifndef ZETASD//vertical curv, XZ-plane std (in deg) with mean ANGINCR(see above)
+#define ZETASD 5.0
+#endif
+#ifndef ENVSHRAD//shadow exerted by the neighbors, branches do not grow beyond this
+#define ENVSHRAD 1.2
+#endif
+
+//Voxel box parameters
+#ifndef GSA//voxel box for each direction
+#define GSA 600
+#endif
+#ifndef GSX//voxel box grid size along X-axis
+#define GSX GSA
+#endif
+#ifndef GSY//voxel box grid size along Y-axis (up)
+#define GSY GSA
+#endif
+#ifndef GSZ//voxel box grid size along Z-axis
+#define GSZ GSA
+#endif
+#ifndef VSA//physical size of the voxel for each direction
+#define VSA 0.01
+#endif
+#ifndef VSX//voxel size in [m] along X-axis
+#define VSX VSA
+#endif
+#ifndef VSY//voxel size in [m] along Y-axis
+#define VSY VSA
+#endif
+#ifndef VSZ//voxel size in [m] along Z-axis
+#define VSZ VSA
+#endif
+
+//Shadow propagation model parameters
+#ifndef QRAD//plane-sensor radiation
+#define QRAD 40.0
+#endif
+#ifndef SH //shadow value as a fraction of QRAD
+#define SH 50.0
+#endif
+#ifndef SHLEN//shadow length, m
+#define SHLEN 0.7
+#endif
+/* #ifndef QRADLOW//proportion of shadow, after which propagation stops */
+/* #define QRADLOW 0.1//10% drop of the shadow value, valid for exp shadowing */
+/* #endif */
+/* #ifndef EXPBASE// exponent base, known as "b" parameter from the paper */
+/* #define EXPBASE 3.0//valid for exp shadowing */
+/* #endif */
+#ifndef NPOINCYL//number of points at cyl to propagate shade
+#define NPOINCYL 1
+#endif
+
+//Firmament model
+/* #ifndef NAZ */
+/* #define NAZ 9//number of azimuthal zones for firmament */
+/* #endif */
+/* #ifndef NINC */
+/* #define NINC 9//number of inclination zones for firmament */
+/* #endif */
+
+//Some flags
+#ifndef LABELFLAG//various labels on the plot
+#define LABELFLAG 1
+#endif
+#ifndef FOLFLAG//foliage plotting flag
+#define FOLFLAG 1
+#endif

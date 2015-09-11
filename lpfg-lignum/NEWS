@@ -1,0 +1,9 @@
+1.1: Shedding options:
+i) delayed production of buds that are not allowed to grow due to (radiation) conditions.
+ii) shedding year: year requirement on the youngest segment in the branch to shed.
+iii) Random number of segment from the tip to shed: uniform and Poisson distributions.
+
+1.0: Full version, ready to run, with several parameter sets 
+and all features of LIGNUM as of publications Perttunen et al. 1998,
+Sievanen et al. 2008, except for the radiation conditions, which are taken from
+Palubicki et al., 2009.
