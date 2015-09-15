@@ -1,5 +1,5 @@
 function lpfg_set_par(fname,varargin)
-% Set user defined parameters to a file(e.g. 'user.h') for LPFG-LIGNUM.
+% Set user defined parameters to a file (e.g. 'user.h') for an LPFG model
 % USAGE:
 %      LPFG_SET_PAR(FNAME,...)
 %

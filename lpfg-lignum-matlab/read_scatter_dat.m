@@ -27,7 +27,7 @@ type_names = cell(1,10);
 type_id = 0;
 n_types = 0;
 for ii=1:10
-    s{ii} = cell(1,10);% up to 10 orders
+    s{ii} = cell(1,11);% up to 10 orders (+ 0 order)
 end
 
 while 1
@@ -57,19 +57,19 @@ while 1
     else
         if(strcmp(type,'taper'))
             C = textscan(line,'%f %f');
-            s{type_id}{order} = cat(1,s{type_id}{order},[C{1} C{2}]);
+            s{type_id}{order+1} = cat(1,s{type_id}{order+1},[C{1} C{2}]);
         elseif(strcmp(type,'bra'))
             C = textscan(line,'%f');
-            s{type_id}{order} = cat(1,s{type_id}{order},C{1});
+            s{type_id}{order+1} = cat(1,s{type_id}{order+1},C{1});
         elseif(strcmp(type,'curv'))
             C = textscan(line,'%f %f %f');
-            s{type_id}{order} = cat(1,s{type_id}{order},[C{1} C{2} C{3}]);
+            s{type_id}{order+1} = cat(1,s{type_id}{order+1},[C{1} C{2} C{3}]);
         elseif(strcmp(type,'lchi_lapar'))
             C = textscan(line,'%f %f');
-            s{type_id}{order} = cat(1,s{type_id}{order},[C{1} C{2}]);
+            s{type_id}{order+1} = cat(1,s{type_id}{order+1},[C{1} C{2}]);
         elseif(strcmp(type,'lchi_bra_lapar'))
             C = textscan(line,'%f %f %f');
-            s{type_id}{order} = cat(1,s{type_id}{order},[C{1} C{2} C{3}]);
+            s{type_id}{order+1} = cat(1,s{type_id}{order+1},[C{1} C{2} C{3}]);
         else
             fprintf('I do not know the type.\n');
         end

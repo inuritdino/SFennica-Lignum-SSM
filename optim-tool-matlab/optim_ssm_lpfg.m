@@ -1,12 +1,13 @@
-function [scatOut,overall,outfname] = optim_lgm_call(X,varargin)
-% This is the MODEL distribution function generator for the LPFG-LIGNUM.
+function [scatOut,overall,outfname] = optim_ssm_lpfg(X,varargin)
+% This is the MODEL distribution function generator for the a Stochastic
+% Structural Model (SSM) implemented in LPFG simulator.
 % USAGE:
-%      [s,ov,outf] = optim_lgm_call(X,...)
+%      [s,ov,outf] = optim_ssm_lpfg(X,...)
 % S is the target scatter (default: tapering function).
 %
 % OV is the overal information about the tree: height, diameters etc.
 %
-% OUTF is the output filename that is a unique name to save the results.
+% OUTF is the output folder name that is unique one to save the results to.
 % Usually called at the end of the optimization procedure to fixate the
 % best solution.
 %
@@ -21,7 +22,7 @@ function [scatOut,overall,outfname] = optim_lgm_call(X,varargin)
 %
 % 'argsConst' - meta-description of the parameter values that are constant
 % throughout the simulation. See the simple description of the
-% meta-language below in the head of the function ARGS_TO_LGMARGS(...).
+% meta-language below in the head of the function ARGS_TO_SSMARGS(...).
 %
 % 'C' - array of the constant values described by the argsConst.
 %
@@ -31,15 +32,16 @@ function [scatOut,overall,outfname] = optim_lgm_call(X,varargin)
 % READ_SCATTER_DAT(...) for the supported scatters. The default is tapering
 % distribution function. Additionally, the multiple scatters can be
 % specified by putting the names into a cell-array. For example,
-% OPTIM_LGM_CALL(...,'scat',{'taper','bra'},...) would produce two
+% OPTIM_SSM_LPFG(...,'scat',{'taper','bra'},...) would produce two
 % scatters: tapering and branching angle distribution functions. Similarly,
-% larger number of scatters can be used.
+% larger number of scatters can be used. New scatters can be introduced by
+% modifying the SSM and READ_SCATTER_DAT().
 %
 % 'order' - order of the scatter determined by 'scat'. See
 % READ_SCATTER_DAT(...).
 %
-% 'rndseed' - the additional possibility to specify seed to the
-% LPFG-LIGNUM (i.e. RNDSEED parameter). It will overwrite the normal usage
+% 'rndseed' - the additional possibility to specify seed to the SSM
+% (i.e. RNDSEED parameter). It will overwrite the normal usage of RNDSEED
 % through the argsConst.
 
 %% Initializations
@@ -105,11 +107,11 @@ for ii=1:length(X)
 end
 
 %% Process the meta-language
-lgmArgsConst = args_to_lgmArgs(ConstVals,argsConst);
+lgmArgsConst = args_to_ssmArgs(ConstVals,argsConst);
 if(~isempty(lgmArgsConst))
-    lgmArgs = [args_to_lgmArgs(X,args) lgmArgsConst];
+    lgmArgs = [args_to_ssmArgs(X,args) lgmArgsConst];
 else
-    lgmArgs = args_to_lgmArgs(X,args);
+    lgmArgs = args_to_ssmArgs(X,args);
 end
 % Process rndseed separately. Note this will overwrite RNDSEED in argsConst
 if(~isempty(rndseed))
@@ -130,10 +132,10 @@ if(outf_flag)
 end
 
 %% RUN LPFG-LGM
-lpfg_lgm_run(visual,0,lgmArgs{:});
+lpfg_run(visual,0,lgmArgs{:});
 
 % Determine whether everything was smooth
-fid = fopen('lignum.log','r');
+fid = fopen('out.log','r');
 ok = true;
 while 1
     line = fgetl(fid);
@@ -174,7 +176,7 @@ for jj = 1:length(scat_order)
 end
 if(trunk_scatter_flag)
     m = length(scatOut);
-    idx_tap = strcmp('tap',scat_names);
+    idx_tap = strcmp('taper',scat_names);
     idx_curv = strcmp('curv',scat_names);
     scatOut{m+1} = (scatter{idx_tap}{1})';
     scatOut{m+2} = (scatter{idx_curv}{1})';
@@ -183,7 +185,7 @@ end
 end
 
 %% Meta-language processing function
-function lgmArgs = args_to_lgmArgs(vals,args)
+function lgmArgs = args_to_ssmArgs(vals,args)
 % Simple transfer function from parameter description meta language to the
 % LPFG LGM notation. Meta description: PARNAME_DISTR_PARNUM, i.e. a string
 % with PARNAME - par name, DISTR - distribution it follows (empty in case

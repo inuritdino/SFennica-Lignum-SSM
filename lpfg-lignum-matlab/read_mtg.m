@@ -1,7 +1,7 @@
 function [tr,TS,br] = read_mtg(mtgfn)
 % Read the Multi-scale Tree Graph format file and convert it to the TREE
 % object, TS and BR structs (see LIGMAT package).
-%Cyl's numbering does not change by deleted cyl's that have empty values.
+% Cyl's numbering does not change by deleted cyl's that have empty values.
 %
 % USAGE:
 %      [TR,TS,BR] = READ_MTG(MTGFN)
@@ -17,6 +17,7 @@ fid = fopen(mtgfn);
 % Create the fileformat
 %M = 15;% number of fields in the format
 format_line = '%s %d %d %f %f %s %s %s %f %f %f %d %d %s %d';
+%format_line = '%s %d %d %f %f %s %s %s %d %d %s %d';
 % Read the input file name
 T = textscan(fid,format_line,'delimiter',' ');
 % Number of lines read
@@ -25,6 +26,7 @@ N = length(T{1});
 tr = tree();
 TS = struct('age',[],'Wf0',[],'Wf',[],'hwR',[]);
 ncyl = 0;% max cyl index to cover all cyl's
+disp('Start reading MTG... (this may take some time)');
 for ii=1:N
     % Cyl number and topology
     tok = regexp(T{1}{ii},'(\/|<|(C\d+\+))C(?<cyl>\d+)','names');
@@ -87,8 +89,9 @@ end
 tr.number_of_branches = ncyl;
 %disp(['I''ve read ' num2str(N) ' lines and ' num2str(ncyl) ' cylinders.']);
 % Get branch information
-br = ligmat_get_branch(tr);
+br = get_branches(tr);
 
+disp('Done');
 fclose(fid);
 end
 

@@ -227,7 +227,7 @@ else% rescale the weights
     if(numel(w) ~= N)
         error('Error: weights dimension does not match data.');
     end
-    w = w(:)./sum(w(:));
+    w = w(:)./sum(w(:));% mormalize the weights
 end
 
 % Calculate z-scores for each of the DF's

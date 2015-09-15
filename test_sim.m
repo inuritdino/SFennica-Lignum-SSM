@@ -27,7 +27,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Add function folders to the MATLAB path
 curr_dir = pwd;
-addpath([curr_dir '/lpfg-lignum-matlab'],genpath([curr_dir '/optim-tool-matlab']));
+addpath(genpath(curr_dir));
 
 %% Enter the LPFG-LIGNUM directory
 cd lpfg-lignum/;
