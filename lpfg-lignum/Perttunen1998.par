@@ -129,7 +129,7 @@
 #define ZETASD 5.0
 #endif
 #ifndef ENVSHRAD//shadow exerted by the neighbors, branches do not grow beyond this
-#define ENVSHRAD 4.2
+#define ENVSHRAD 1.33
 #endif
 
 //Voxel box parameters
@@ -163,10 +163,10 @@
 #define QRAD 30.0
 #endif
 #ifndef SH //shadow value as a fraction of QRAD
-#define SH 40.0
+#define SH 10.0
 #endif
 #ifndef SHLEN//shadow length, m
-#define SHLEN 0.5
+#define SHLEN 0.55
 #endif
 /* #ifndef QRADLOW//proportion of shadow, after which propagation stops */
 /* #define QRADLOW 0.1//10% drop of the shadow value, valid for exp shadowing */
