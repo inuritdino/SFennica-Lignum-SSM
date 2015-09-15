@@ -16,7 +16,7 @@ The paper offers a novel approach to model structure of trees by iteratively opt
 1. Matlab, The MathWorks. The paper simluations were run in Matlab ver. R2014b.
 2. LPFG, simulator for plant growth modeling. The simulator is available as a part of L-studio (Windows) or VLab (Unix/Mac) simulation environments. Both can be downloaded at <http://algorithmicbotany.org/virtual_laboratory/> along with the documentation and detailed installation guides.
 
-####Common pitfalls:
+####Common pitfalls
 
 I. 'NOT FOUND LIBRARY/SYMBOL' error
 
@@ -29,7 +29,7 @@ or symbol' error in MATLAB, when it calls LPFG simulator (LPFG is foreign to MAT
 For example, in Mac OS the following was proven to work when typing at the MATLAB command line or in the startup.m script:
 
     setenv('PATH',[getenv('PATH') ':/Applications/browser.app/Contents/MacOS/dbin' ':/Applications/browser.app/Contents/MacOS/bin']);% sets the path to the LPFG executables
-    setenv('DYLD_FRAMEWORK_PATH','\<put here the system variable value\>');
+    setenv('DYLD_FRAMEWORK_PATH','<put here the system variable value>');
 
 i.e. if in the system environment 
 
