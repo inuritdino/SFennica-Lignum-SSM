@@ -20,6 +20,12 @@ The paper offers a novel approach to model structure of trees by iteratively opt
 1. Matlab, The MathWorks. The paper simluations were run in Matlab ver. R2014b.
 2. LPFG, simulator for plant growth modeling. The simulator is available as a part of L-studio (Windows) or VLab (Unix/Mac) simulation environments. Both can be downloaded at <http://algorithmicbotany.org/virtual_laboratory/> along with the documentation and detailed installation guides.
 
+####How to run
+
+1. Navigate to the downloaded directory.
+2. _test_sim.m_, _test_sim16.m_, and _real_sim.m_ files are the script files for the **test case** (Fig. 3 and Table 2), the **test case with 16 parameters** to estimate, and the **real case** (Fig. 4), respectively. You may want to run one of these just by typing their names at the Matlab prompt.
+3. The resulting figures will appear (what they are can be found in the script files' comments).
+
 ####Common pitfalls
 
 I. 'NOT FOUND LIBRARY/SYMBOL' error
