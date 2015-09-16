@@ -11,6 +11,8 @@ The paper offers a novel approach to model structure of trees by iteratively opt
 
 **OPTIM-TOOL-MATLAB**: optimization routine code including the distance functions
 
+**QSM-LIBRARY**: library of .mat (Matalb data) files containing structural data for the real trees
+
 ####Requirements
 
 1. Matlab, The MathWorks. The paper simluations were run in Matlab ver. R2014b.
