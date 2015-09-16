@@ -20,10 +20,10 @@
 % 
 % As a result, one gets two trees in figure 22 of Matlab: the data-tree
 % (origin at [0 0 0]) and the optimized tree (origin at [5 0 0]). Two
-% additional figures are shown during the optimization: one with cumulative
+% additional figures are shown during the optimization: 1)the cumulative
 % contribution of parameters to the fitness (structural distance) at each step and
-% another with the best and average fitness along the generations
-% and the average (genetic) distance between population's individuals.
+% 2) the best and average fitness along the generations and the average 
+% (genetic) distance between population's individuals.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Add function folders to the MATLAB path
 curr_dir = pwd;
@@ -74,7 +74,7 @@ ELITE = 4;% elite size, 4
 GENS = 50;% number of generations, 50
 STALL = 5;% stall generations limit,5
 
-%% Call optimization (genetic algorithm)
+%% Call optimization routine (genetic algorithm)
 DIM = length(LB);% Dimension of the problem (number of parameters to optimize)
 % Call the optimization routine resulting in the best solution X, i.e. 
 % optimal values of the 8 parameters.
