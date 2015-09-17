@@ -41,7 +41,7 @@ If this runs successfully, the LPFG works. If not, perhaps system's PATH variabl
 
 2.Adjust MATLAB environment variables to those of the system's environment. Use 'setenv' and 'getenv' commands in MATLAB. You may want to look at the PATH, LD_LIBRARY_PATH, DYLD_LIBRARY_PATH, DYLD_FRAMEWORK_PATH variables (these are common in Mac OS systems, use corresponding variables on other systems).
 
-For example, in Mac OS the following was proven to work when typing at the MATLAB command line or in the startup.m script:
+For example, in Mac OS, given VLab was installed in /Applications/ folder, the following was proven to work when typing at the MATLAB command line or in the startup.m script:
 ```
 setenv('PATH',[getenv('PATH') ':/Applications/browser.app/Contents/MacOS/dbin' ':/Applications/browser.app/Contents/MacOS/bin']);% sets the path to the LPFG executables
 setenv('DYLD_FRAMEWORK_PATH','<put here the system variable value>');
