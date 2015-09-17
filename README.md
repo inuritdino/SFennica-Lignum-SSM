@@ -1,5 +1,5 @@
 # SFennica-Lignum-SSM
-Repository for the supplementary code of the paper 'Data-based stochastic modeling of tree growth and structure formation' in _Silva Fennica_, 2015.
+Repository for the supplementary code of the paper 'Data-based stochastic modeling of tree growth and structure formation' in _Silva Fennica_, 2015 (anonymous).
 
 The paper offers a novel approach to model structure of trees by iteratively optimizing empirical distributions describing structure of the data tree (as obtained from the laser scanning) and those of a Stochastic Structural tree Model (SSM, here stochastic LIGNUM). The resulting SSM has 'optimal' parameter values to produce trees statistically similar to the data tree and to each other, that is the SSM sample trees are not exact copies of each other. Thus, unlimited number of sample trees can be generated.
 
@@ -38,6 +38,7 @@ or symbol' error in MATLAB, when it calls LPFG simulator (LPFG is foreign to MAT
 lpfg lignum.l view.v material.mat
 ```
 If this runs successfully, the LPFG works. If not, perhaps system's PATH variable is not correctly set or other installation problems occurred.
+
 2. Adjust MATLAB environment variables to those of the system's environment. Use 'setenv' and 'getenv' commands in MATLAB. You may want to look at the PATH, LD_LIBRARY_PATH, DYLD_LIBRARY_PATH, DYLD_FRAMEWORK_PATH variables (these are common in Mac OS systems, use corresponding variables on other systems).
 
 For example, in Mac OS the following was proven to work when typing at the MATLAB command line or in the startup.m script:
