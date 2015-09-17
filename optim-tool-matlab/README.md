@@ -98,7 +98,7 @@ Read the MTG file to get the tree structure info in MATLAB
 ```
 [tr,ts,br] = READ_MTG('lignum.mtg');
 ```
-Might want to comment on the simulation
+One might want to comment on the simulation
 ```
 fid = fopen('README','w');
 fprintf(fid,'BRAANG_GAUSS+ANGINCR+MAXANG_GAUSS+ZETASD\n');
