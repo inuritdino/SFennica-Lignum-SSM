@@ -80,7 +80,7 @@ INTCON = [5 15];% the 5th and 15th parameters are integers
 POPSIZE = 1;% population size, 50
 ELITE = 0;% elite size, 5
 GENS = 3;% number of generations, 50
-STALL = 1;% stall generations limit,5
+STALL = 2;% stall generations limit,5
 
 %% Call optimization routine (genetic algorithm)
 DIM = length(LB);% Dimension of the problem (number of parameters to optimize)
@@ -130,15 +130,17 @@ hold off;
 title('Spatial curvature');
 xlabel('Relative branch length');
 ylabel('Vertical plane angle, deg');
-subplot(2,4,4);
-[n1,x1] = hist((180/pi)*data_u{3}); bar(x1,n1,'b');
-subplot(2,4,8);
-[n2,x2] = hist((180/pi)*optim_model_u{3}); bar(x2,n2,'r');
+subplot(1,4,4);
+low = min(min((180/pi)*data_u{3}),min((180/pi)*optim_model_u{3}));
+high = max(max((180/pi)*data_u{3}),max((180/pi)*optim_model_u{3}));
+step = (high-low)/10;
+x = low:step:high;
+n1 = histc((180/pi)*data_u{3},x);
+n2 = histc((180/pi)*optim_model_u{3},x);
+b = bar(x,[n1;n2]');
+b(1).FaceColor = 'b'; b(1).EdgeColor = 'b';
+b(2).FaceColor = 'r'; b(2).EdgeColor = 'r';
 xlabel('Branching angle, deg');
-low = min(min(x1),min(x2)) - max(x1(2)-x1(1),x2(2)-x2(1));
-high = max(max(x1),max(x2)) + max(x1(2)-x1(1),x2(2)-x2(1));
-subplot(2,4,4);xlim([low high]);
-subplot(2,4,8);xlim([low high]);
 
 %% Error reports
 Err = 100.*abs(X0-X)./X0;
