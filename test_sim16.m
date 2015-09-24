@@ -77,10 +77,10 @@ UB = [0.0135 0.0015 0.3 0.045 18.0 0.6 45.0 1.5 0.45 52.5 3.0 7.5 150.0 10.5 11 
 % More specific parameters of the genetic algorithm (see elsewhere, or
 % MATLAB documentation for GA)
 INTCON = [5 15];% the 5th and 15th parameters are integers
-POPSIZE = 1;% population size, 50
-ELITE = 0;% elite size, 5
-GENS = 3;% number of generations, 50
-STALL = 2;% stall generations limit,5
+POPSIZE = 50;% population size, 50
+ELITE = 5;% elite size, 5
+GENS = 50;% number of generations, 50
+STALL = 5;% stall generations limit,5
 
 %% Call optimization routine (genetic algorithm)
 DIM = length(LB);% Dimension of the problem (number of parameters to optimize)
