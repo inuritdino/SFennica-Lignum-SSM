@@ -280,7 +280,7 @@ EndEach:
 	cyls[i].radius = tmp_rad;
       }
     }
-    if(isnan(cyls[i].radius)){
+    if(std::isnan(cyls[i].radius)){
       std::cout << "ERROR: secondary thickening with NaN radius!" << std::endl;
     }
     //Foliage shedding
@@ -623,7 +623,7 @@ float tot_sap_mass(int nCyl)
       continue;
     x += RHO * cyls[i].length * M_PI * \
       (cyls[i].radius*cyls[i].radius - cyls[i].hwR*cyls[i].hwR);
-    if(isnan(x)){
+    if(std::isnan(x)){
       std::cout << "ERROR: NaN for cyl " << i << ", " << cyls[i].length << ",";
       std::cout << cyls[i].radius << "," << cyls[i].hwR << "," << cyls[i].lr << std::endl;
       break;

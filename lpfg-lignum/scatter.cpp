@@ -46,7 +46,7 @@ int scatter_output(std::vector<CylData> & cyls, int nCyl, std::vector<Branch> & 
   std::ofstream scat;
   scat.open("scatter.dat",std::ofstream::out);
   std::vector<int> curr_brs;
-  int order = 1;
+  int order = 0;
   float len,rad,ang,gamma,zeta,tot_len;
   int n,m,k;
   V3f rax,newZ,newY,newX,newV;
@@ -65,7 +65,12 @@ int scatter_output(std::vector<CylData> & cyls, int nCyl, std::vector<Branch> & 
       for(int j = 0; j < br[curr_brs[i]].cyl_ind.size(); j++){
 	len += cyls[br[curr_brs[i]].cyl_ind[j]].length;
 	rad = cyls[br[curr_brs[i]].cyl_ind[j]].radius;
-	scat << len << " " << rad << std::endl;
+	if(isnan(len) || isnan(rad)){
+	  std::cerr << "Taper: instance of NaN" << std::endl;
+	}
+	else{
+	  scat << len << " " << rad << std::endl;
+	}
       }
     }
     scat << std::endl << std::endl;
@@ -74,7 +79,15 @@ int scatter_output(std::vector<CylData> & cyls, int nCyl, std::vector<Branch> & 
     if(order > 0){
       for(int i = 0; i < curr_brs.size(); i++){
 	n = br[curr_brs[i]].cyl_ind[0];//1st cyl of the br
-	scat << acos(cyls[n].axis*cyls[cyls[n].parent].axis) << std::endl;
+	ang = acos(cyls[n].axis*cyls[cyls[n].parent].axis);
+	if(isnan(ang)){
+	  std::cerr << "Bra: instance of NaN: " << std::endl;
+	  std::cerr << cyls[n].axis << "; " << cyls[cyls[n].parent].axis <<\
+	    ": " << cyls[n].axis*cyls[cyls[n].parent].axis << std::endl;
+	}
+	else{
+	  scat << ang << std::endl;
+	}
       }
     }
     scat << std::endl << std::endl;
@@ -95,7 +108,12 @@ int scatter_output(std::vector<CylData> & cyls, int nCyl, std::vector<Branch> & 
 	for(int j = 0; j < br[curr_brs[i]].cyl_ind.size(); j++){
 	  tot_len += cyls[br[curr_brs[i]].cyl_ind[j]].length;
 	}
-	scat << len << " " << tot_len << std::endl;
+	if(isnan(len) || isnan(tot_len)){
+	  std::cerr << "lchi_lapar: instance of NaN " << std::endl;
+	}
+	else{
+	  scat << len << " " << tot_len << std::endl;
+	}
       }
     }
     scat << std::endl << std::endl;
@@ -116,8 +134,13 @@ int scatter_output(std::vector<CylData> & cyls, int nCyl, std::vector<Branch> & 
 	for(int j = 0; j < br[curr_brs[i]].cyl_ind.size(); j++){
 	  tot_len += cyls[br[curr_brs[i]].cyl_ind[j]].length;
 	}
-	scat << len << " " << tot_len << " " << \
-	  acos(cyls[n].axis*cyls[cyls[n].parent].axis) << std::endl;
+	ang = acos(cyls[n].axis*cyls[cyls[n].parent].axis);
+	if(isnan(len) || isnan(tot_len) || isnan(ang)){
+	  std::cerr << "lchi_bra_lapar: instance of NaN " << std::endl;
+	}
+	else{
+	  scat << len << " " << tot_len << " " << ang << std::endl;
+	}
       }
     }
     scat << std::endl << std::endl;
@@ -206,7 +229,12 @@ int scatter_output(std::vector<CylData> & cyls, int nCyl, std::vector<Branch> & 
 	//Relative length along the branch
 	len += cyls[br[curr_brs[i]].cyl_ind[j-1]].length / tot_len;
 	//Output
-	scat << gamma << " " << zeta << " " << len << std::endl;
+	if(isnan(gamma) || isnan(zeta) || isnan(len)){
+	  std::cerr << "curv: instance of NaN" << std::endl;
+	}
+	else{
+	  scat << gamma << " " << zeta << " " << len << std::endl;
+	}
       }
     }
     scat << std::endl << std::endl;

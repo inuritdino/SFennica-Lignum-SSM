@@ -511,14 +511,14 @@ int modify_coord_xy(V3f vector, V3f & newX, V3f & newY)
   //projection of vector onto XY
   float tmp = vector.y;
   vector.y = 0.0;
-  vector.Normalize();
   if(vector.Length() < TOL){//Vertical vector = Z/-Z
-    std::cout << "WARNING: VERTICAL VECTOR!" << std::endl;
+    //std::cout << "WARNING: VERTICAL VECTOR!" << std::endl;
     newX = vector;
     Z = newX % Y;
     newY = Y;
   }
   else{//Normal procedure
+    vector.Normalize();//normalize the non-zero vector
     //new X-axis
     newX = vector;
     //new Y-axis
@@ -581,7 +581,9 @@ float projection_angle(V3f vector, V3f ortho1, V3f ortho2)
   //Find the projection by 2 consecutive cross products
   vector = vector % normal;
   vector = normal % vector;
-  vector.Normalize();
+  if(vector.Length() > TOL){//Normalize non-zero vector
+    vector.Normalize();
+  }
   //Find angle
   return (atan2f(vector * ortho2, vector * ortho1));
 }
