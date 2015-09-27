@@ -114,6 +114,7 @@ float mass_of_cyls(std::vector<int> &);
 int get_all_offsets(int,std::vector<int> &);
 float cyls_ground_proj_area(std::vector<int> &);
 int num_deleted(int,std::vector<CylData>&);
+int num_dead(int,std::vector<CylData>&);
 int overall_info(int,int,std::vector<CylData>&,V3f,float,std::vector<Branch>&);
 int pipe_model(std::vector<CylData>&,int,int,float[],\
 	       std::vector<float>&,std::vector<float>&);

@@ -43,16 +43,14 @@ Start:
 End:
 {
   std::cout << "%%% Simulation finished. Year " << Year << " %%%" << std::endl;
-  std::cout << "Total number of cyl's: " << nCyl <<  \
-    "/" << num_deleted(nCyl,cyls) << " deleted (";
+  std::cout << "Total number of cyl's: " << nCyl <<  std::endl;
+  std::cout <<  "  deleted: " << num_deleted(nCyl,cyls) << " (";
   std::cout << "by space: " << nRemovedSpace << ", shedding: " << \
     nRemovedShed << ", mass: " << nRemovedMass <<		    \
     ", rupture: " << nRemovedRupt << ")" << std::endl;
+  std::cout << "  dead: " << num_dead(nCyl,cyls) << std::endl;
   std::cout << "Not grown due to environment: " << nRemovedEnvTot << std::endl;
   std::cout << "Max rupture: " << maxRupt << std::endl;
-  // for(int i=0; i < nCyl; i++)
-  //   std::cout << cyls[i];
-  //std::cout << "Wr = " << Wr << std::endl;
   std::cout << "Diameter at base: " << 2*cyls[0].radius << std::endl;
   std::cout << "Breast height(1.3m) diameter: " << breast_height_diam(cyls,nCyl,sta) \
 	    << std::endl;
@@ -71,7 +69,9 @@ End:
     std::cout << "CylData resized " << cyl_resize_count-1 << " times." << std::endl;
 
   //Write the output structure in MTG file
+  std::cout << "Forming MTG output...";
   mtg_write(cyls,nCyl);
+  std::cout << "Done.\n";
   //Random number generator check
   // float x[1000];
   // std::ofstream out;
@@ -82,17 +82,24 @@ End:
   // }
   // out.close();
   std::vector<Branch> br;
+  std::cout << "Extracting branches...";
   extract_branches(cyls,nCyl,br);
+  std::cout << "Done (extracted " << br.size() << " branches).\n";
+  std::cout << "Forming scatters...";
   scatter_output(cyls,nCyl,br);
-  std::cout << "Extracted " << br.size() << " branches" << std::endl;
+  std::cout << "Done.\n";
   //LOG file
+  std::cout << "Log file...";
   logfile.open("lignum.log",std::ofstream::out);
   logfile << fatal_error << std::endl;
   logfile.close();
+  std::cout << "Done.\n";
   //Overall info to the file
+  std::cout << "Overal info...";
   overall_info(Year,nCyl,cyls,sta,maxRupt,br);
-
+  std::cout << "Done.\n";
 }
+
 StartEach:
 {
   if(fatal_error)
@@ -1040,6 +1047,16 @@ int num_deleted(int nCyl, std::vector<CylData>& cyls)
   int out = 0;
   for(int i=0; i<nCyl; i++)
     if(cyls[i].is_deleted)
+      out++;
+
+  return out;
+}
+
+int num_dead(int nCyl, std::vector<CylData>& cyls)
+{
+  int out = 0;
+  for(int i=0; i<nCyl; i++)
+    if(cyls[i].is_dead)
       out++;
 
   return out;
