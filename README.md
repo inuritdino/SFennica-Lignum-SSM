@@ -9,7 +9,7 @@ The paper offers a novel approach to model structure of trees by iteratively opt
 
 **LPFG-LIGNUM-MATLAB**: the Matlab interface to run the LPFG-Lignum code
 
-**OPTIM-TOOL-MATLAB**: optimization routine code including the distance functions
+**OPTIM-TOOL-MATLAB**: optimization routine code
 
 **QSM-LIBRARY**: library of .mat (Matlab data) files containing structural data for the real trees
 
