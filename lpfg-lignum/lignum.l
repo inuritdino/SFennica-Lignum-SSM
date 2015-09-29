@@ -84,7 +84,7 @@ End:
   std::vector<Branch> br;
   std::cout << "Extracting branches...";
   extract_branches(cyls,nCyl,br);
-  std::cout << "Done (extracted " << br.size() << " branches).\n";
+  std::cout << "Done (" << br.size() << " branches).\n";
   std::cout << "Forming scatters...";
   scatter_output(cyls,nCyl,br);
   std::cout << "Done.\n";
@@ -95,7 +95,7 @@ End:
   logfile.close();
   std::cout << "Done.\n";
   //Overall info to the file
-  std::cout << "Overal info...";
+  std::cout << "Overall info...";
   overall_info(Year,nCyl,cyls,sta,maxRupt,br);
   std::cout << "Done.\n";
 }

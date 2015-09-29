@@ -1,7 +1,8 @@
 1.1.1: Scatter output patch:
-i) Avoid and warn on NaN values
-ii) NaN are not reported (this causes problems in the subsequent Bayes Forest scatter analysis)
-iii) Scatters for the trunk (taper and curvature only)
+i) Avoid and warn on NaN values.
+ii) NaN are not reported (this causes problems in the subsequent Bayes Forest scatter analysis).
+iii) Scatters for the trunk (taper and curvature only).
+iv) Poisson shedding infinite loop security code.
 
 1.1: Shedding options:
 i) delayed production of buds that are not allowed to grow due to (radiation) conditions.

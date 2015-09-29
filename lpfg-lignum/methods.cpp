@@ -1,4 +1,6 @@
 #define TOL (1e-05)
+#define POINTHROW 100 //how many time to throw Poisson rand var
+
 //Functions' declarations
 float sap_cross_area(std::vector<CylData> &, int);
 int propagate_branch_backward(std::vector<CylData> &,int ,std::vector<int>&, \
@@ -93,6 +95,7 @@ int branch_shedding(std::vector<CylData> & cyls, int nCyl, int & nRemovedShed)
   std::vector<int> cyls_to_shed;
   std::vector<bool> protected_cyls (nCyl,false);
   unsigned int k;//number of tip 1st order cyl's to shed
+  int q;
   float shed_pois_mu;
   while(deleted)
     {//Stop iterations when there were no deleted cyls/branches (deleted == false)
@@ -122,11 +125,19 @@ int branch_shedding(std::vector<CylData> & cyls, int nCyl, int & nRemovedShed)
 		  }
 		  else
 		    shed_pois_mu = (float)SHEDMU;
+		  //Throwing a dice: reject large and negative k's. Allow only POINTHROW throwings
+		  q = 0;
 		  do{
 		    k = ran_poisson(shed_pois_mu);
+		    q++;
 		    //std::cout << "k_poiss = " << k << std::endl;
 		  }
-		  while ( k > cyls_to_shed.size() );
+		  while ( (k > cyls_to_shed.size()) && (q < POINTHROW) );//k cannot be negative
+		  if(q == POINTHROW){
+		    //std::cout << "Poisson: threw " << POINTHROW << " times, no success. k = " << k;
+		    //std::cout << ", #cyls: " << cyls_to_shed.size() << ". Shedding whole branch.\n";
+		    k = (unsigned int)cyls_to_shed.size();
+		  }
 		}
 		else{//Otherwise, shed everything
 		  k = (unsigned int)cyls_to_shed.size();
