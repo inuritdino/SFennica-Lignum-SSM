@@ -37,7 +37,7 @@ or symbol' error in MATLAB, when it calls LPFG simulator (LPFG is foreign to MAT
 ```
 lpfg lignum.l view.v material.mat
 ```
-If this runs successfully, the LPFG works. If not, perhaps system's PATH variable is not correctly set or other installation problems occurred.
+If this runs successfully, the LPFG works. If not, perhaps system's PATH variable is not correctly set or other installation problems occurred. Try to fix this, following closely the installation instructions of the simulating environment (VLab/L-Studio).
 
 2.Adjust MATLAB environment variables to those of the system's environment. Use 'setenv' and 'getenv' commands in MATLAB. You may want to look at the PATH, LD_LIBRARY_PATH, DYLD_LIBRARY_PATH, DYLD_FRAMEWORK_PATH variables (these are common in Mac OS systems, use corresponding variables on other systems).
 
