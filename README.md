@@ -1,7 +1,7 @@
 # SFennica-Lignum-SSM
 Repository for the supplementary code of the paper
 
-I. Potapov, Marko Järvenpää, Markku Åkerblom, Pasi Raumonen, and Mikko Kaasalainen 
+Ilya Potapov, Marko Järvenpää, Markku Åkerblom, Pasi Raumonen, and Mikko Kaasalainen 
 **'Data-based stochastic modelling of tree growth and structure formation'** in _Silva Fennica_, **50**(1): 1413, 2015 (<http://dx.doi.org/10.14214/sf.1413>).
 
 The paper offers a novel approach to model structure of trees by iteratively optimizing empirical distributions describing structure of the data tree (as obtained from the laser scanning) and those of a Stochastic Structural tree Model (SSM, here stochastic LIGNUM). The resulting SSM has 'optimal' parameter values to produce trees statistically similar to the data tree and to each other, that is the SSM sample trees are not exact copies of each other. Thus, unlimited number of sample trees can be generated.
